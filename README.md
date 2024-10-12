@@ -1,2 +1,4 @@
 # Basic_Calculator
-This is a Basic Calculator using PySide6
+This is a Basic Calculator using PySide6.
+
+## Installation
