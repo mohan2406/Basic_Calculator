@@ -7,8 +7,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, Q
 from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QIcon, QKeyEvent, QPalette, QColor
 
-import qdarktheme
-    
+   
 
 class MCalc(PostfixEvaluator, QMainWindow):
 
@@ -50,7 +49,6 @@ class MCalc(PostfixEvaluator, QMainWindow):
                 if i.isdecimal():
                     app_palette = QApplication.palette()
                     bg_color = app_palette.color(QPalette.Window).name()
-                    print(bg_color.lower())
                     if bg_color.lower() in ['#ffffff', '#fcfcfc', '#f0f0f0']: # light theme
                         buttons[i].setStyleSheet("font-size: 15pt; font-weight: bold; color: #404040")
                     else:                             # dark theme
@@ -129,8 +127,8 @@ class MCalc(PostfixEvaluator, QMainWindow):
         return b
 
 app = QApplication([])
-#qdarktheme.setup_theme()
-window = MCalc()
 
+window = MCalc()
 window.show()
+
 app.exec()
