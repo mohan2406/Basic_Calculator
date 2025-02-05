@@ -5,8 +5,9 @@ from PostfixEvaluator import PostfixEvaluator
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QLineEdit, QPushButton
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtGui import QIcon, QKeyEvent
+from PySide6.QtGui import QIcon, QKeyEvent, QPalette, QColor
 
+import qdarktheme
     
 
 class MCalc(PostfixEvaluator, QMainWindow):
@@ -47,7 +48,13 @@ class MCalc(PostfixEvaluator, QMainWindow):
                 buttons[i].pressed.connect(self.clear)
             else:
                 if i.isdecimal():
-                    buttons[i].setStyleSheet("font-size: 15pt; font-weight: bold; color: #404040")
+                    app_palette = QApplication.palette()
+                    bg_color = app_palette.color(QPalette.Window).name()
+                    print(bg_color.lower())
+                    if bg_color.lower() in ['#ffffff', '#fcfcfc', '#f0f0f0']: # light theme
+                        buttons[i].setStyleSheet("font-size: 15pt; font-weight: bold; color: #404040")
+                    else:                             # dark theme
+                        buttons[i].setStyleSheet("font-size: 15pt; font-weight: bold; color: white")
                 buttons[i].pressed.connect(
                         lambda val=i: self.display(val)
                         )
@@ -122,6 +129,7 @@ class MCalc(PostfixEvaluator, QMainWindow):
         return b
 
 app = QApplication([])
+#qdarktheme.setup_theme()
 window = MCalc()
 
 window.show()
